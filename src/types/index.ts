@@ -26,6 +26,30 @@ export interface AuthToken {
   refreshToken?: string;
 }
 
+export interface AuthUser {
+  id: string;
+  email: string;
+  name: string;
+  roles: RoleType[];
+}
+
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  user: AuthUser;
+}
+
+export interface ProblemDetails {
+  type?: string;
+  title: string;
+  status: number;
+  detail?: string;
+  instance?: string;
+}
+
 export interface PageProps {
   params?: Record<string, any>;
   searchParams?: Record<string, string>;

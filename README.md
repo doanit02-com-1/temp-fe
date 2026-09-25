@@ -17,13 +17,14 @@ Create `.env.local` from `.env.example`:
 cp .env.example .env.local
 ```
 
-Update the configuration:
+Start the local backend and Redis/Valkey, then configure:
 ```env
-NEXT_PUBLIC_API_BASE_URL=http://your-backend-domain:port
-NEXT_PUBLIC_COGNITO_REGION=your-region
-NEXT_PUBLIC_COGNITO_USER_POOL_ID=your-pool-id
-NEXT_PUBLIC_COGNITO_CLIENT_ID=your-client-id
+BACKEND_API_BASE_URL=http://localhost:8080
+REDIS_URL=redis://localhost:6379
+AUTH_SESSION_TTL_SECONDS=604800
 ```
+
+The backend contract is documented in [`spec/AUTH_API_CONTRACT.md`](spec/AUTH_API_CONTRACT.md).
 
 ### 3. Development Server
 ```bash
@@ -84,12 +85,11 @@ if (result.ok) {
 
 ## Authentication Flow
 
-1. User submits login credentials on `/` (login page)
-2. Call `POST /api/auth/login` endpoint
-3. Backend returns `accessToken`, `idToken`, `userId`, `role`
-4. Tokens stored in sessionStorage + HTTP-only cookies
-5. Middleware validates requests & role-based access
-6. Token auto-refresh when expiration < 5 minutes
+1. User submits credentials on `/`; Next.js calls the local backend from its server route.
+2. Backend tokens are stored in local Redis/Valkey, not in browser storage.
+3. Browser receives an opaque `HttpOnly` session cookie.
+4. Middleware redirects requests without the cookie; protected server pages verify the session and role from Redis.
+5. The BFF refreshes tokens server-side and clears expired sessions.
 
 ## RBAC System
 

@@ -1,41 +1,37 @@
-/**
- * Authentication Service
- */
+import type { ApiResponse, AuthUser, LoginResponse } from '@/types';
 
-import { BaseService } from './baseService';
-import type { ApiResponse, User, AuthToken } from '@/types';
+async function request<T>(path: string, body?: unknown): Promise<ApiResponse<T>> {
+  try {
+    const response = await fetch(path, {
+      method: body === undefined ? 'GET' : 'POST',
+      headers: body === undefined ? undefined : { 'Content-Type': 'application/json' },
+      body: body === undefined ? undefined : JSON.stringify(body),
+      cache: 'no-store',
+    });
+    const data = response.status === 204 ? undefined : await response.json();
 
-export class AuthService extends BaseService {
-  constructor() {
-    super('/api/auth');
-  }
+    if (!response.ok) {
+      return {
+        ok: false,
+        status: response.status,
+        errors: [data?.detail || data?.title || 'Request failed'],
+      };
+    }
 
-  async login(email: string, password: string): Promise<ApiResponse<AuthToken & User>> {
-    return this.post('/login', { email, password });
-  }
-
-  async logout(): Promise<ApiResponse> {
-    return this.post('/logout', {});
-  }
-
-  async refreshToken(refreshToken: string): Promise<ApiResponse<AuthToken>> {
-    return this.post('/refresh', { refreshToken });
-  }
-
-  async getProfile(): Promise<ApiResponse<User>> {
-    return this.get('/profile');
-  }
-
-  async updateProfile(data: Partial<User>): Promise<ApiResponse<User>> {
-    return this.put('/profile', data);
-  }
-
-  async changePassword(
-    oldPassword: string,
-    newPassword: string
-  ): Promise<ApiResponse> {
-    return this.post('/change-password', { oldPassword, newPassword });
+    return { ok: true, status: response.status, response: data as T };
+  } catch {
+    return { ok: false, status: 0, errors: ['Unable to reach the application server'] };
   }
 }
 
-export const authService = new AuthService();
+export const authService = {
+  login(email: string, password: string) {
+    return request<LoginResponse>('/api/auth/login', { email, password });
+  },
+  logout() {
+    return request<void>('/api/auth/logout', {});
+  },
+  getCurrentUser() {
+    return request<AuthUser>('/api/auth/me');
+  },
+};

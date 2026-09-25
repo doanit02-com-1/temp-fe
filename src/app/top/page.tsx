@@ -1,10 +1,10 @@
-'use client';
+import { requireAuthorizedSession } from '@/lib/auth/redisSession';
+import { TopPageClient } from './TopPageClient';
 
-export default function TopPage() {
+export default async function TopPage() {
+  const session = await requireAuthorizedSession('/top');
+
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Top Page</h1>
-      <p>This is a simplified temporary page.</p>
-    </div>
+    <TopPageClient user={session.user} />
   );
 }

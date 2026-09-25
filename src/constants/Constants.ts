@@ -17,6 +17,10 @@ export const COOKIE_KEYS = {
   THEME: 'theme',
 } as const;
 
+export const AUTH_SESSION_TTL_SECONDS = Number(
+  process.env.AUTH_SESSION_TTL_SECONDS || 604800
+);
+
 // Session Storage Keys
 export const SESSION_STORAGE_KEYS = {
   ACCESS_TOKEN: 'access_token',

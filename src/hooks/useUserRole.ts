@@ -5,28 +5,31 @@
 
 import { useEffect } from 'react';
 import { useUserStore } from '@/stores/userStore';
+import { authService } from '@/services/authService';
 
 export function useUserRole() {
-  const { userId, userRole, userName, isAdmin, initialize } = useUserStore();
+  const { userId, userRole, userName, isAdmin, initialize, clearUser, isInitialized } = useUserStore();
 
   useEffect(() => {
-    // Initialize user data from session storage on client
-    if (typeof window !== 'undefined') {
-      const storedUserId = sessionStorage.getItem('user_id');
-      const storedRole = sessionStorage.getItem('user_role');
-      const storedName = sessionStorage.getItem('user_name');
-
-      if (storedUserId && storedRole) {
-        initialize(storedUserId, storedRole, storedName);
+    let isCurrent = true;
+    authService.getCurrentUser().then((result) => {
+      if (!isCurrent) return;
+      if (result.ok && result.response) {
+        const user = result.response;
+        initialize(user.id, user.roles[0] || 'USER', user.name);
+      } else {
+        clearUser();
       }
-    }
-  }, [initialize]);
+    });
+
+    return () => { isCurrent = false; };
+  }, [clearUser, initialize]);
 
   return {
     userId,
     userRole,
     userName,
     isAdmin,
-    isInitialized: userId !== null && userRole !== null,
+    isInitialized,
   };
 }

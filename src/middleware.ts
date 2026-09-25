@@ -1,11 +1,18 @@
-/**
- * Middleware - Authentication Gateway
- * TEMPORARILY DISABLED FOR TESTING
- */
-
 import { NextRequest, NextResponse } from 'next/server';
+import { COOKIE_KEYS, PROTECTED_ROUTES } from '@/constants/Constants';
 
 export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const isProtectedRoute = PROTECTED_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
+
+  if (isProtectedRoute && !request.cookies.has(COOKIE_KEYS.SESSION_ID)) {
+    const loginUrl = new URL('/', request.url);
+    loginUrl.searchParams.set('returnTo', pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
   return NextResponse.next();
 }
 

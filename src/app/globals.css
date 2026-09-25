@@ -58,3 +58,152 @@ a {
 .border-primary {
   border-color: #018838;
 }
+
+.login-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  background: #edf3ef;
+}
+
+.login-panel {
+  width: min(100%, 440px);
+  padding: 40px;
+  border: 1px solid #d8e3dc;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgb(24 54 37 / 8%);
+}
+
+.login-brand {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #018838;
+  color: white;
+  font-weight: 700;
+}
+
+.login-eyebrow {
+  margin-top: 28px;
+  color: #018838;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.login-panel h1 {
+  margin-top: 8px;
+  color: #17261c;
+  font-size: 26px;
+  line-height: 1.25;
+}
+
+.login-description {
+  margin-top: 8px;
+  color: #647168;
+  font-size: 14px;
+}
+
+.login-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.login-form input {
+  min-height: 44px;
+}
+
+.login-submit {
+  min-height: 46px;
+  margin-top: 4px;
+}
+
+.login-error {
+  color: #b42318;
+  font-size: 14px;
+}
+
+.top-page {
+  min-height: 100vh;
+  background: #f6f8f6;
+}
+
+.top-page-header {
+  min-height: 104px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px max(24px, calc((100vw - 1100px) / 2));
+  border-bottom: 1px solid #d8e3dc;
+  background: #fff;
+}
+
+.top-page-header .login-eyebrow {
+  margin-top: 0;
+}
+
+.top-page-header h1 {
+  margin: 4px 0;
+  color: #17261c;
+  font-size: 22px;
+}
+
+.top-page-header p:not(.login-eyebrow) {
+  color: #647168;
+  font-size: 14px;
+}
+
+.top-page-header button {
+  padding: 10px 14px;
+  border: 1px solid #bdcfc2;
+  border-radius: 6px;
+  color: #174b2b;
+  font-weight: 600;
+}
+
+.top-page-header button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.top-page-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.top-page-content h2 {
+  color: #17261c;
+  font-size: 20px;
+}
+
+.top-page-content p {
+  margin-top: 8px;
+  color: #647168;
+}
+
+.forbidden-page {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .login-panel {
+    padding: 28px 22px;
+  }
+
+  .top-page-header {
+    align-items: flex-start;
+    padding: 20px 16px;
+  }
+}

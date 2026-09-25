@@ -36,8 +36,8 @@ const checks = {
     'src/app/layout.tsx',
     'src/app/page.tsx',
     'src/app/globals.css',
-    'src/app/GlobalLayout.tsx',
     'src/app/top/page.tsx',
+    'src/app/top/TopPageClient.tsx',
   ],
   '✅ Components': [
     'src/components/atoms/Button.tsx',
@@ -67,6 +67,12 @@ const checks = {
     'src/data/screenPermissions.ts',
     'src/middleware.ts',
     'src/types/index.ts',
+    'src/lib/auth/backend.ts',
+    'src/lib/auth/redisSession.ts',
+    'src/app/api/auth/login/route.ts',
+    'src/app/api/auth/logout/route.ts',
+    'src/app/api/auth/me/route.ts',
+    'src/app/api/auth/refresh/route.ts',
   ],
 };
 

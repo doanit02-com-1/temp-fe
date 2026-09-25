@@ -31,22 +31,7 @@ try {
   console.log('📊 Next steps:');
   console.log('  1. Run: npm run start');
   console.log('  2. Or: npm run dev\n');
-} catch (error) {
-  // Build may fail due to page data collection errors, but artifacts may still be generated
-  // Check if .next folder exists with content
-  const nextDir = path.join(__dirname, '.next');
-  if (fs.existsSync(nextDir)) {
-    const files = fs.readdirSync(nextDir);
-    if (files.length > 0) {
-      console.log('\n⚠️  Build completed with warnings (page data collection errors)');
-      console.log('🔍 Build artifacts exist and may be usable\n');
-      console.log('📊 Next steps:');
-      console.log('  1. Run: npm run start');
-      console.log('  2. Or: npm run dev\n');
-      process.exit(0);  // Exit successfully anyway
-    }
-  }
-  
+} catch {
   console.error('\n❌ Build failed!');
   console.error('🔍 Check the error messages above.\n');
   process.exit(1);
