@@ -1,0 +1,54 @@
+# dependencies
+/node_modules
+
+# build output
+/.next
+/out
+/build
+/dist
+
+# testing
+/coverage
+/jest.config.js
+/jest.setup.js
+eslint-report.json
+
+# environment variables
+.env
+.env.local
+.env.*.local
+.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# lock files
+yarn.lock
+package-lock.json
+
+# No commit
+.gitignore1
+ARCHITECTURE_GUIDE.md
+BUILD_READY.md
+BUILD_SUCCESS.md
+DOCUMENTATION_INDEX.md
+CodeStructureTemplate.md
+IMPLEMENTATION_SUMMARY.md
+PROJECT_FILES.md
+PROJECT_STRUCTURE.md
+QUICK_REFERENCE.md
+SUGGESTIONS.md
+VISUAL_ARCHITECTURE.md
