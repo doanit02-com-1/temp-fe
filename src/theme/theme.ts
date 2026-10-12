@@ -3,46 +3,46 @@ import { createTheme } from "@mui/material/styles";
 export const theme = createTheme({
   palette: {
     primary: {
-      light: "#80B3FF",
-      main: "#0D6EFD",
-      dark: "#084298",
+      light: "#C4E7D6",
+      main: "#2D9A78",
+      dark: "#1A614C",
     },
     secondary: {
-      light: "#FF80A8",
-      main: "#FF1A61",
-      dark: "#990F3C",
+      light: "#FBD0D9",
+      main: "#E96B82",
+      dark: "#B94158",
     },
     success: {
-      light: "#80E6B3",
+      light: "#B3F0D1",
       main: "#1ACD75",
       dark: "#0F7B47",
     },
     warning: {
-      light: "#FFE680",
-      main: "#FFD21A",
-      dark: "#997F0F",
+      light: "#FFF0B8",
+      main: "#F2B84B",
+      dark: "#9A6A14",
     },
     error: {
-      light: "#FF8080",
-      main: "#FF1A1A",
-      dark: "#990F0F",
+      light: "#FFD8D2",
+      main: "#D95D4F",
+      dark: "#913B33",
     },
     info: {
-      light: "#B3D1FF",
-      main: "#0D6EFD",
-      dark: "#052C65",
+      light: "#D4E9F5",
+      main: "#5B9EBB",
+      dark: "#315D72",
     },
     text: {
-      primary: "#212529",
-      secondary: "#495057",
+      primary: "#26372F",
+      secondary: "#647168",
     },
     background: {
-      default: "#F8F9FA",
+      default: "#F7F8F4",
       paper: "#FFFFFF",
     },
   },
   typography: {
-    fontFamily: "Inter, Roboto, sans-serif",
+    fontFamily: "var(--font-store), sans-serif",
     h1: { fontSize: "32px", fontWeight: 700, lineHeight: "40px" },
     h2: { fontSize: "24px", fontWeight: 600, lineHeight: "32px" },
     h3: { fontSize: "20px", fontWeight: 600, lineHeight: "28px" },
@@ -54,7 +54,7 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: "8px",
+            borderRadius: "8px",
           padding: "8px 16px",
         },
       },

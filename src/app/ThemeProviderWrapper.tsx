@@ -1,19 +1,15 @@
-// src/app/layout.tsx
-"use client";
+'use client';
 
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import { theme } from "../theme/theme"; // import theme.ts
+import type { ReactNode } from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from '@/theme/theme';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export function ThemeProviderWrapper({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
   );
 }
